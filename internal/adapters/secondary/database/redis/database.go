@@ -17,6 +17,7 @@ func ConnectRedisDB() {
 		dsn = "localhost:6379"
 	}
 
+	username := os.Getenv("REDIS_USER")
 	password := os.Getenv("REDIS_PASSWORD")
 
 	db, err := strconv.Atoi(os.Getenv("REDIS_DB"))
@@ -25,7 +26,8 @@ func ConnectRedisDB() {
 	}
 
 	client = redis.NewClient(&redis.Options{
-		Addr:     dsn,      //redis port
+		Addr:     dsn, //redis port
+		Username: username,
 		Password: password, // no password set
 		DB:       db,       // use default DB
 	})
