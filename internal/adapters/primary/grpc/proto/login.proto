@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "../pb;auth";
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string access_token = 1;
+  string refress_token = 2;
+}

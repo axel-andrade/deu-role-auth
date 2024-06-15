@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/axel-andrade/deu-role-auth/internal/adapters/primary/http/server"
+	grpc_server "github.com/axel-andrade/deu-role-auth/internal/adapters/primary/grpc/server"
 	mongo_database "github.com/axel-andrade/deu-role-auth/internal/adapters/secondary/database/mongo"
 	redis_database "github.com/axel-andrade/deu-role-auth/internal/adapters/secondary/database/redis"
 	"github.com/axel-andrade/deu-role-auth/internal/infra"
@@ -30,7 +30,13 @@ func init() {
 func main() {
 	d := infra.LoadDependencies()
 
-	s := server.NewServer(os.Getenv("PORT"))
-	s.AddRoutes(d)
-	s.Run()
+	grpcPort := os.Getenv("GRPC_PORT")
+	grpcAddress := ":50051" // Default gRPC server port
+
+	if grpcPort != "" {
+		grpcAddress = ":" + grpcPort
+	}
+
+	// Run gRPC server
+	grpc_server.RunGRPCServer(grpcAddress, d)
 }

@@ -42,5 +42,5 @@ func (bs *LoginUC) Execute(input LoginInputDTO) (*LoginOutputDTO, error) {
 		return nil, err
 	}
 
-	return &LoginOutputDTO{*user, td.AccessToken, td.RefreshToken}, nil
+	return &LoginOutputDTO{td.AccessToken, td.RefreshToken}, nil
 }
