@@ -1,24 +1,22 @@
 version: "3"
 
-networks:
-  shared-services:
-    external: true
-
 services:
   deu-role-auth:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    image: go_mongo_api:latest
+      dockerfile: Dockerfile
+    image: deu-role-auth:latest
     restart: always
     env_file:
       - .env
     environment:
       - WATCH_FILES=${WATCH_FILES}
       - DEBUG=${DEBUG}
-    ports:
-      - 8080:8080
     volumes:
-      - .:/go/src/app # Mapear para o diretório correto dentro do contêiner
+      - .:/go/src/app
     networks:
       - shared-services
+
+networks:
+  shared-services:
+    external: true

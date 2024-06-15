@@ -1,5 +1,5 @@
 # Use uma imagem mínima do Go como imagem base, como a imagem Alpine
-FROM golang:1.20-alpine
+FROM golang:1.22-alpine
 
 # Defina variáveis de ambiente para otimizar a compilação
 ENV GO111MODULE=on \
@@ -23,13 +23,10 @@ RUN go mod tidy
 COPY . .
 
 # Compile a aplicação Go
-RUN go build -o app
+RUN go build -o app ./cmd/api/main.go
 
 # Remova qualquer dependência desnecessária que possa ter sido instalada durante a compilação
 RUN apk --no-cache add ca-certificates
-
-# Exponha a porta em que a aplicação irá rodar
-EXPOSE 8080
 
 # Comando para executar a aplicação
 CMD ["./app"]
