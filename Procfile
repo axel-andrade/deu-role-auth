@@ -1,1 +1,1 @@
-web: go build -o nome_do_seu_executavel ./cmd/api && ./main.go
+web: go build -o app ./cmd/api && ./app
