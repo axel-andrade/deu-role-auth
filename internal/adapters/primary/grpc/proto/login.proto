@@ -11,5 +11,5 @@ message LoginRequest {
 
 message LoginResponse {
   string access_token = 1;
-  string refress_token = 2;
+  string refresh_token = 2;
 }

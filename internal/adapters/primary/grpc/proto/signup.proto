@@ -11,5 +11,5 @@ message SignupRequest {
 }
 
 message SignupResponse {
-  string userId = 1;
+  string user_id = 1;
 }

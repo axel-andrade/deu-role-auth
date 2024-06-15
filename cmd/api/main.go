@@ -30,7 +30,7 @@ func init() {
 func main() {
 	d := infra.LoadDependencies()
 
-	grpcPort := os.Getenv("GRPC_PORT")
+	grpcPort := os.Getenv("PORT")
 	grpcAddress := ":50051" // Default gRPC server port
 
 	if grpcPort != "" {

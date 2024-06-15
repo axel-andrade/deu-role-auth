@@ -28,11 +28,12 @@ func (s *AuthGrpcService) Login(ctx context.Context, req *pb.LoginRequest) (*pb.
 	if err != nil {
 		return nil, err
 	}
-	return &pb.LoginResponse{AccessToken: output.AccessToken, RefressToken: output.RefreshToken}, nil
+	return &pb.LoginResponse{AccessToken: output.AccessToken, RefreshToken: output.RefreshToken}, nil
 }
 
 func (s *AuthGrpcService) Signup(ctx context.Context, req *pb.SignupRequest) (*pb.SignupResponse, error) {
 	input := signup.SignupInputDTO{
+		Name:     req.Name,
 		Email:    req.Email,
 		Password: req.Password,
 	}
